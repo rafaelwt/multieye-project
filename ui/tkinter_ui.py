@@ -7,7 +7,7 @@ Define la clase TkinterUI que proporciona una interfaz gráfica de usuario.
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 from application.image_manager import ImageManager
-from domain.exceptions import (
+from error import (
     ImageNotFoundError,
     DuplicateImageError,
     ImageManagerError

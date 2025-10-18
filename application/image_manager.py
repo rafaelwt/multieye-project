@@ -7,7 +7,7 @@ Define la clase ImageManager que maneja las operaciones CRUD sobre imágenes.
 from pathlib import Path
 from typing import List, Optional
 from domain.image import Image, DIAGNOSTICS
-from domain.exceptions import (
+from error import (
     ImageManagerError,
     ImageNotFoundError,
     DuplicateImageError

@@ -6,7 +6,7 @@ Define la clase ConsoleUI que proporciona la interfaz de usuario en terminal.
 
 from typing import Optional
 from application.image_manager import ImageManager
-from domain.exceptions import (
+from error import (
     ImageNotFoundError,
     DuplicateImageError,
     ImageManagerError
@@ -48,7 +48,7 @@ class ConsoleUI:
     def _show_welcome(self) -> None:
         """Muestra el mensaje de bienvenida."""
         print("\n" + "=" * 60)
-        print("  SISTEMA DE GESTIÓN DE IMÁGENES MÉDICAS")
+        print("  SISTEMA DE GESTIÓN DE IMÁGENES MÉDICAS (MultiEYE)")
         print("  Dataset: MultiEYE - Imágenes de Fondo de Ojo")
         print("=" * 60)
 
@@ -232,8 +232,7 @@ class ConsoleUI:
         print("\nImagen a eliminar:")
         self._show_image(image)
 
-        confirmation = input(
-            "\n¿Está seguro que desea eliminar esta imagen? (s/n): ").strip().lower()
+        confirmation = input("\n¿Está seguro que desea eliminar esta imagen? (s/n): ").strip().lower()
         if confirmation == 's':
             try:
                 self._manager.delete_image(name)
@@ -257,8 +256,7 @@ class ConsoleUI:
         print(f"\nTotal de imágenes: {len(images)}\n")
         for i, image in enumerate(images, 1):
             print(f"{i}. {image.name}")
-            print(
-                f"   Clase: {image.class_id} | Diagnóstico: {image.diagnostic} | Edad: {image.age}")
+            print(f"   Clase: {image.class_id} | Diagnóstico: {image.diagnostic} | Edad: {image.age}")
             print()
 
     def _list_by_diagnostic(self) -> None:
