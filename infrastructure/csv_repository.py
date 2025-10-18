@@ -13,14 +13,16 @@ from domain.image import Image
 class CsvRepository:
     """Guarda imágenes en formato CSV."""
 
-    def __init__(self, file_path: str = "image_data.csv"):
+    def __init__(self, file_path: str = "storage/image_data.csv"):
         """
         Inicializa el repositorio CSV.
 
         Args:
-            file_path: Nombre del archivo CSV
+            file_path: Ruta del archivo CSV (por defecto en storage/)
         """
         self.file_path = Path(file_path)
+        # Asegurar que el directorio existe
+        self.file_path.parent.mkdir(parents=True, exist_ok=True)
 
     def save(self, images: List[Image]) -> None:
         """Guarda las imágenes en CSV."""

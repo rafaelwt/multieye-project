@@ -55,13 +55,13 @@ class ConsoleUI:
     def _show_goodbye(self) -> None:
         """Muestra el mensaje de despedida."""
         print("\n" + "=" * 60)
-        print("  Gracias por usar el sistema. ¡Hasta pronto!")
+        print("  Saliendo del Sistema")
         print("=" * 60 + "\n")
 
     def _show_menu(self) -> None:
         """Muestra el menú principal de opciones."""
         print("\n" + "-" * 60)
-        print("MENÚ PRINCIPAL")
+        print("====================== MENÚ PRINCIPAL ======================")
         print("-" * 60)
         print("1. Registrar nueva imagen")
         print("2. Buscar imagen")
@@ -70,7 +70,7 @@ class ConsoleUI:
         print("5. Listar todas las imágenes")
         print("6. Listar imágenes por diagnóstico")
         print("7. Cargar imágenes desde archivo TXT")
-        print("8. Salir")
+        print("0. Salir")
         print("-" * 60)
 
     def _read_option(self) -> str:
@@ -80,7 +80,7 @@ class ConsoleUI:
         Returns:
             str: Opción ingresada por el usuario
         """
-        return input("Seleccione una opción (1-8): ").strip()
+        return input("Seleccione una opción: ").strip()
 
     def _process_option(self, option: str) -> None:
         """
@@ -97,7 +97,7 @@ class ConsoleUI:
             "5": self._list_images,
             "6": self._list_by_diagnostic,
             "7": self._load_from_txt,
-            "8": self._exit
+            "0": self._exit
         }
 
         action = options.get(option)
@@ -113,7 +113,7 @@ class ConsoleUI:
             ) as e:
                 print(f"\nError: {e}")
         else:
-            print("\nOpción inválida. Por favor, seleccione una opción del 1 al 8.")
+            print("\nOpción inválida. Por favor, seleccione una opción del 1 al 7 o 0 para salir.")
 
     def _register_image(self) -> None:
         """Registra una nueva imagen en el sistema."""

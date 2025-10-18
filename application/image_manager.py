@@ -22,7 +22,7 @@ class ImageManager:
     Los datos se guardan en formato CSV usando la biblioteca estándar.
     """
 
-    def __init__(self, csv_file: str = "image_data.csv"):
+    def __init__(self, csv_file: str = "storage/image_data.csv"):
         """
         Inicializa el gestor de imágenes.
 
