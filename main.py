@@ -48,10 +48,10 @@ def main():
         ui.run()
 
     except KeyboardInterrupt:
-        print("\n\nPrograma interrumpido por el usuario")
+        print("\n\nCancelado por el usuario.")
     except Exception as e:
         print(f"\nError crítico: {e}")
-        print("Por favor, contacte al administrador del sistema")
+        print("Se produjo un error inesperado. Saliendo del programa.")
 
 
 if __name__ == "__main__":
