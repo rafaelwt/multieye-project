@@ -13,4 +13,4 @@ env/
 
 datos_imagenes.json
 *.json
-
+*.csv
