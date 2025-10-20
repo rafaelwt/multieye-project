@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introducción al Sistema MultiEYE &mdash; Sistema MultiEYE 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Instalación" href="instalacion.html" />
+    <link rel="prev" title="Sistema de Gestión de Imágenes Médicas (MultiEYE)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sistema MultiEYE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introducción al Sistema MultiEYE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#descripcion-general">Descripción General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#objetivos">Objetivos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset-multieye">Dataset MultiEYE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metadatos-adicionales">Metadatos Adicionales</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uso.html">Guía de Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Documentación de Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-domain.image">Módulo Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-application.image_manager">Módulo Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-ui.console_ui">Módulo UI - Consola</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-ui.tkinter_ui">Módulo UI - Gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-infrastructure.csv_repository">Módulo Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-error.base">Módulo Error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sistema MultiEYE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introducción al Sistema MultiEYE</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduccion.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduccion-al-sistema-multieye">
+<h1>Introducción al Sistema MultiEYE<a class="headerlink" href="#introduccion-al-sistema-multieye" title="Link to this heading"></a></h1>
+<section id="descripcion-general">
+<h2>Descripción General<a class="headerlink" href="#descripcion-general" title="Link to this heading"></a></h2>
+<p>El Sistema MultiEYE es una aplicación desarrollada en Python para la gestión de imágenes médicas de fondo de ojo. Está diseñado para proyectos de investigación en imagenología médica, permitiendo el manejo eficiente de imágenes y sus metadatos clínicos asociados.</p>
+</section>
+<section id="objetivos">
+<h2>Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Proporcionar una herramienta simple para gestionar imágenes médicas</p></li>
+<li><p>Mantener metadatos clínicos organizados y accesibles</p></li>
+<li><p>Facilitar la investigación en imagenología médica</p></li>
+<li><p>Demostrar buenas prácticas de programación en Python</p></li>
+</ul>
+</section>
+<section id="dataset-multieye">
+<h2>Dataset MultiEYE<a class="headerlink" href="#dataset-multieye" title="Link to this heading"></a></h2>
+<p>El sistema utiliza el dataset MultiEYE que contiene imágenes de fondo de ojo clasificadas en 8 categorías:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Normal</p></li>
+<li><p><strong>1</strong>: Dry Age-Related Macular Degeneration (dAMD)</p></li>
+<li><p><strong>2</strong>: Central Serous Chorioretinopathy (CSC)</p></li>
+<li><p><strong>3</strong>: Diabetic Retinopathy (DR)</p></li>
+<li><p><strong>4</strong>: Glaucoma (GLC)</p></li>
+<li><p><strong>5</strong>: Macular Epiretinal Membrane (MEM)</p></li>
+<li><p><strong>6</strong>: Retinal Vein Occlusion (RVO)</p></li>
+<li><p><strong>7</strong>: Wet Age-Related Macular Degeneration (wAMD)</p></li>
+</ul>
+</section>
+<section id="metadatos-adicionales">
+<h2>Metadatos Adicionales<a class="headerlink" href="#metadatos-adicionales" title="Link to this heading"></a></h2>
+<p>Además de la clasificación, el sistema maneja:</p>
+<ul class="simple">
+<li><p><strong>Nombre de la imagen</strong>: Identificador único del archivo</p></li>
+<li><p><strong>Edad del paciente</strong>: Información demográfica</p></li>
+<li><p><strong>Diagnóstico</strong>: Descripción textual de la condición</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Sistema de Gestión de Imágenes Médicas (MultiEYE)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="instalacion.html" class="btn btn-neutral float-right" title="Instalación" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Equipo de Desarrollo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

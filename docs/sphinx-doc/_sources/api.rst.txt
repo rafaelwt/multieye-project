@@ -1,0 +1,78 @@
+API Reference
+=============
+
+Esta sección contiene la documentación completa de la API del sistema MultiEYE.
+
+Clases Principales
+------------------
+
+Image
+~~~~~
+
+.. autoclass:: domain.image.Image
+   :members:
+   :special-members: __init__
+
+ImageManager
+~~~~~~~~~~~~
+
+.. autoclass:: application.image_manager.ImageManager
+   :members:
+   :special-members: __init__
+
+ConsoleUI
+~~~~~~~~~
+
+.. autoclass:: ui.console_ui.ConsoleUI
+   :members:
+   :special-members: __init__
+
+TkinterUI
+~~~~~~~~~
+
+.. autoclass:: ui.tkinter_ui.TkinterUI
+   :members:
+   :special-members: __init__
+
+CsvRepository
+~~~~~~~~~~~~~
+
+.. autoclass:: infrastructure.csv_repository.CsvRepository
+   :members:
+   :special-members: __init__
+
+Excepciones
+-----------
+
+ImageManagerError
+~~~~~~~~~~~~~~~~~
+
+.. autoexception:: error.base.ImageManagerError
+
+DuplicateImageError
+~~~~~~~~~~~~~~~~~~~
+
+.. autoexception:: error.duplicate.DuplicateImageError
+
+ImageNotFoundError
+~~~~~~~~~~~~~~~~~~
+
+.. autoexception:: error.not_found.ImageNotFoundError
+
+Constantes
+----------
+
+DIAGNOSTICS
+~~~~~~~~~~~
+
+.. data:: domain.image.DIAGNOSTICS
+
+   Diccionario que mapea los IDs de clase a información de diagnóstico.
+
+   .. code-block:: python
+
+      DIAGNOSTICS = {
+          0: {"abbr": "Normal", "name": "Normal"},
+          1: {"abbr": "dAMD", "name": "Degeneración macular asociada a la edad (seca)"},
+          # ... más diagnósticos
+      }

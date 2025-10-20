@@ -1,0 +1,38 @@
+Introducción al Sistema MultiEYE
+=================================
+
+Descripción General
+-------------------
+
+El Sistema MultiEYE es una aplicación desarrollada en Python para la gestión de imágenes médicas de fondo de ojo. Está diseñado para proyectos de investigación en imagenología médica, permitiendo el manejo eficiente de imágenes y sus metadatos clínicos asociados.
+
+Objetivos
+---------
+
+* Proporcionar una herramienta simple para gestionar imágenes médicas
+* Mantener metadatos clínicos organizados y accesibles
+* Facilitar la investigación en imagenología médica
+* Demostrar buenas prácticas de programación en Python
+
+Dataset MultiEYE
+----------------
+
+El sistema utiliza el dataset MultiEYE que contiene imágenes de fondo de ojo clasificadas en 8 categorías:
+
+* **0**: Normal
+* **1**: Dry Age-Related Macular Degeneration (dAMD)
+* **2**: Central Serous Chorioretinopathy (CSC)
+* **3**: Diabetic Retinopathy (DR)
+* **4**: Glaucoma (GLC)
+* **5**: Macular Epiretinal Membrane (MEM)
+* **6**: Retinal Vein Occlusion (RVO)
+* **7**: Wet Age-Related Macular Degeneration (wAMD)
+
+Metadatos Adicionales
+---------------------
+
+Además de la clasificación, el sistema maneja:
+
+* **Nombre de la imagen**: Identificador único del archivo
+* **Edad del paciente**: Información demográfica
+* **Diagnóstico**: Descripción textual de la condición

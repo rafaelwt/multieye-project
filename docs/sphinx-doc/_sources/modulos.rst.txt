@@ -1,0 +1,60 @@
+Documentación de Módulos
+=========================
+
+Módulo Domain
+=============
+
+.. automodule:: domain.image
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Módulo Application
+==================
+
+.. automodule:: application.image_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Módulo UI - Consola
+===================
+
+.. automodule:: ui.console_ui
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Módulo UI - Gráfico
+===================
+
+.. automodule:: ui.tkinter_ui
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Módulo Infrastructure
+=====================
+
+.. automodule:: infrastructure.csv_repository
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Módulo Error
+============
+
+.. automodule:: error.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: error.duplicate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: error.not_found
+   :members:
+   :undoc-members:
+   :show-inheritance:

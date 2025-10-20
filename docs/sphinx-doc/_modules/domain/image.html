@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>domain.image &mdash; Sistema MultiEYE 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sistema MultiEYE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduccion.html">Introducción al Sistema MultiEYE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instalacion.html">Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uso.html">Guía de Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulos.html">Documentación de Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulos.html#module-domain.image">Módulo Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulos.html#module-application.image_manager">Módulo Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulos.html#module-ui.console_ui">Módulo UI - Consola</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulos.html#module-ui.tkinter_ui">Módulo UI - Gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulos.html#module-infrastructure.csv_repository">Módulo Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modulos.html#module-error.base">Módulo Error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sistema MultiEYE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">domain.image</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for domain.image</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Módulo de entidad Image.</span>
+
+<span class="sd">Define la clase Image que representa una imagen médica con sus metadatos.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="c1"># Constantes para mapeo de clases a diagnósticos</span>
+<span class="n">DIAGNOSTICS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Normal&quot;</span><span class="p">},</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;dAMD&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Degeneración macular asociada a la edad (seca)&quot;</span><span class="p">},</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;CSC&quot;</span><span class="p">,</span>  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Corioretinopatía serosa central&quot;</span><span class="p">},</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;DR&quot;</span><span class="p">,</span>   <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Retinopatía diabética&quot;</span><span class="p">},</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;GLC&quot;</span><span class="p">,</span>  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Glaucoma&quot;</span><span class="p">},</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;MEM&quot;</span><span class="p">,</span>  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Membrana epirretiniana&quot;</span><span class="p">},</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;RVO&quot;</span><span class="p">,</span>  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Oclusión venosa retiniana&quot;</span><span class="p">},</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;wAMD&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Degeneración macular asociada a la edad (húmeda)&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="Image">
+<a class="viewcode-back" href="../../modulos.html#domain.image.Image">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Image</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Representa una imagen médica de fondo de ojo.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name (str): Nombre del archivo de imagen</span>
+<span class="sd">        class_id (int): Clase numérica de la condición (0-7)</span>
+<span class="sd">        age (int): Edad del paciente</span>
+<span class="sd">        diagnostic (str): Diagnóstico descriptivo</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Image.__init__">
+<a class="viewcode-back" href="../../modulos.html#domain.image.Image.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">class_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Crea una nueva imagen médica.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name: Nombre del archivo de imagen</span>
+<span class="sd">            class_id: Clase numérica (0-7)</span>
+<span class="sd">            age: Edad del paciente</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_id</span> <span class="o">=</span> <span class="n">class_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="n">diagnostic_info</span> <span class="o">=</span> <span class="n">DIAGNOSTICS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">class_id</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;Desconocido&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Desconocido&quot;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagnostic</span> <span class="o">=</span> <span class="n">diagnostic_info</span><span class="p">[</span><span class="s2">&quot;abbr&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagnostic_full</span> <span class="o">=</span> <span class="n">diagnostic_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Image.to_dict">
+<a class="viewcode-back" href="../../modulos.html#domain.image.Image.to_dict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convierte la imagen a diccionario para guardar en CSV.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;class_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_id</span><span class="p">,</span>
+            <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">,</span>
+            <span class="s2">&quot;diagnostic&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagnostic</span>
+        <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Image.__str__">
+<a class="viewcode-back" href="../../modulos.html#domain.image.Image.__str__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Representación en texto de la imagen.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> | Clase: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">class_id</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">diagnostic</span><span class="si">}</span><span class="s2">) | Edad: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2">&quot;</span></div>
+</div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Equipo de Desarrollo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

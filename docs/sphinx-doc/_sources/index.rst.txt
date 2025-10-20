@@ -1,0 +1,43 @@
+Sistema de Gestión de Imágenes Médicas (MultiEYE)
+=================================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contenido:
+
+   introduccion
+   instalacion
+   uso
+   modulos
+   api
+
+Introducción
+============
+
+El Sistema MultiEYE es un módulo de gestión de imágenes médicas y sus metadatos para proyectos de investigación de imagenología médica. El sistema permite registrar, buscar, modificar y eliminar imágenes de fondo de ojo con información clínica asociada.
+
+Características principales:
+
+* Gestión completa de imágenes médicas
+* Metadatos clínicos (edad, diagnóstico, clase)
+* Interfaz de consola y gráfica
+* Persistencia en formato CSV
+* Carga masiva desde archivos TXT
+* Documentación completa con Sphinx
+
+Arquitectura
+============
+
+El sistema sigue una arquitectura modular simple:
+
+* **Dominio**: Entidad Image con metadatos
+* **Aplicación**: ImageManager para operaciones CRUD
+* **Interfaz**: ConsoleUI y TkinterUI
+* **Infraestructura**: CsvRepository para persistencia
+
+Indices y tablas
+================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

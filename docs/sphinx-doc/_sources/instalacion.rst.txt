@@ -1,0 +1,60 @@
+Instalación
+===========
+
+Requisitos del Sistema
+----------------------
+
+* Python 3.7 o superior
+* Windows, Linux o macOS
+* 50 MB de espacio en disco
+
+Instalación
+-----------
+
+1. **Clonar el repositorio**:
+   .. code-block:: bash
+
+      git clone [url-del-repositorio]
+      cd proyecto
+
+2. **Crear entorno virtual** (recomendado):
+   .. code-block:: bash
+
+      py -m venv venv
+      venv\Scripts\activate  # Windows
+      # source venv/bin/activate  # Linux/Mac
+
+3. **Instalar dependencias**:
+   .. code-block:: bash
+
+      py -m pip install -r requirements.txt
+
+4. **Ejecutar el sistema**:
+   .. code-block:: bash
+
+      py main.py
+
+Estructura del Proyecto
+-----------------------
+
+.. code-block:: text
+
+   proyecto/
+   ├── domain/
+   │   └── image.py          # Entidad Image
+   ├── application/
+   │   └── image_manager.py  # Lógica de negocio
+   ├── ui/
+   │   ├── console_ui.py     # Interfaz consola
+   │   └── tkinter_ui.py     # Interfaz gráfica
+   ├── infrastructure/
+   │   └── csv_repository.py # Persistencia
+   ├── error/
+   │   ├── base.py
+   │   ├── duplicate.py
+   │   └── not_found.py
+   ├── data/
+   │   └── ImageData/        # Imágenes del dataset
+   ├── storage/
+   │   └── image_data.csv    # Base de datos
+   └── main.py              # Punto de entrada

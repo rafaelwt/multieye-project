@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; Sistema MultiEYE 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Documentación de Módulos" href="modulos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sistema MultiEYE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contenido:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción al Sistema MultiEYE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uso.html">Guía de Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Documentación de Módulos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-domain.image">Módulo Domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-application.image_manager">Módulo Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-ui.console_ui">Módulo UI - Consola</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-ui.tkinter_ui">Módulo UI - Gráfico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-infrastructure.csv_repository">Módulo Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html#module-error.base">Módulo Error</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#clases-principales">Clases Principales</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#image">Image</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#domain.image.Image"><code class="docutils literal notranslate"><span class="pre">Image</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#imagemanager">ImageManager</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#application.image_manager.ImageManager"><code class="docutils literal notranslate"><span class="pre">ImageManager</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#consoleui">ConsoleUI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ui.console_ui.ConsoleUI"><code class="docutils literal notranslate"><span class="pre">ConsoleUI</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tkinterui">TkinterUI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ui.tkinter_ui.TkinterUI"><code class="docutils literal notranslate"><span class="pre">TkinterUI</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#csvrepository">CsvRepository</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#infrastructure.csv_repository.CsvRepository"><code class="docutils literal notranslate"><span class="pre">CsvRepository</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#excepciones">Excepciones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#imagemanagererror">ImageManagerError</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#error.base.ImageManagerError"><code class="docutils literal notranslate"><span class="pre">ImageManagerError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#duplicateimageerror">DuplicateImageError</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#error.duplicate.DuplicateImageError"><code class="docutils literal notranslate"><span class="pre">DuplicateImageError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#imagenotfounderror">ImageNotFoundError</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#error.not_found.ImageNotFoundError"><code class="docutils literal notranslate"><span class="pre">ImageNotFoundError</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#constantes">Constantes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#diagnostics">DIAGNOSTICS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#domain.image.DIAGNOSTICS"><code class="docutils literal notranslate"><span class="pre">domain.image.DIAGNOSTICS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sistema MultiEYE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<p>Esta sección contiene la documentación completa de la API del sistema MultiEYE.</p>
+<section id="clases-principales">
+<h2>Clases Principales<a class="headerlink" href="#clases-principales" title="Link to this heading"></a></h2>
+<section id="image">
+<h3>Image<a class="headerlink" href="#image" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="domain.image.Image">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">domain.image.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/domain/image.html#Image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#domain.image.Image" title="Link to this definition"></a></dt>
+<dd><p>Representa una imagen médica de fondo de ojo.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="domain.image.Image.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#domain.image.Image.name" title="Link to this definition"></a></dt>
+<dd><p>Nombre del archivo de imagen</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="domain.image.Image.class_id">
+<span class="sig-name descname"><span class="pre">class_id</span></span><a class="headerlink" href="#domain.image.Image.class_id" title="Link to this definition"></a></dt>
+<dd><p>Clase numérica de la condición (0-7)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="domain.image.Image.age">
+<span class="sig-name descname"><span class="pre">age</span></span><a class="headerlink" href="#domain.image.Image.age" title="Link to this definition"></a></dt>
+<dd><p>Edad del paciente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="domain.image.Image.diagnostic">
+<span class="sig-name descname"><span class="pre">diagnostic</span></span><a class="headerlink" href="#domain.image.Image.diagnostic" title="Link to this definition"></a></dt>
+<dd><p>Diagnóstico descriptivo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="domain.image.Image.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/domain/image.html#Image.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#domain.image.Image.__init__" title="Link to this definition"></a></dt>
+<dd><p>Crea una nueva imagen médica.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – Nombre del archivo de imagen</p></li>
+<li><p><strong>class_id</strong> – Clase numérica (0-7)</p></li>
+<li><p><strong>age</strong> – Edad del paciente</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="domain.image.Image.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/domain/image.html#Image.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#domain.image.Image.to_dict" title="Link to this definition"></a></dt>
+<dd><p>Convierte la imagen a diccionario para guardar en CSV.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="domain.image.Image.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/domain/image.html#Image.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#domain.image.Image.__str__" title="Link to this definition"></a></dt>
+<dd><p>Representación en texto de la imagen.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="imagemanager">
+<h3>ImageManager<a class="headerlink" href="#imagemanager" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">application.image_manager.</span></span><span class="sig-name descname"><span class="pre">ImageManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'storage/image_data.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager" title="Link to this definition"></a></dt>
+<dd><p>Gestiona el registro, modificación y eliminación de imágenes médicas.</p>
+<p>Los datos se guardan en formato CSV usando la biblioteca estándar.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'storage/image_data.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.__init__" title="Link to this definition"></a></dt>
+<dd><p>Inicializa el gestor de imágenes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>csv_file</strong> – Nombre del archivo CSV para guardar los datos</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.images">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">images</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image"><span class="pre">Image</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#application.image_manager.ImageManager.images" title="Link to this definition"></a></dt>
+<dd><p>Obtiene la lista de imágenes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.add_image">
+<span class="sig-name descname"><span class="pre">add_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image"><span class="pre">Image</span></a></span></span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.add_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.add_image" title="Link to this definition"></a></dt>
+<dd><p>Agrega una nueva imagen al sistema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Nombre del archivo de imagen</p></li>
+<li><p><strong>class_id</strong> (<em>int</em>) – Clase numérica (0-7) de la condición</p></li>
+<li><p><strong>age</strong> (<em>int</em>) – Edad del paciente</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>La imagen creada y agregada</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image">Image</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="modulos.html#error.duplicate.DuplicateImageError" title="error.duplicate.DuplicateImageError"><strong>DuplicateImageError</strong></a> – Si ya existe una imagen con ese nombre</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.find_image">
+<span class="sig-name descname"><span class="pre">find_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image"><span class="pre">Image</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.find_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.find_image" title="Link to this definition"></a></dt>
+<dd><p>Busca una imagen por su nombre.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Nombre de la imagen a buscar</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>La imagen encontrada o None si no existe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image">Image</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.update_image">
+<span class="sig-name descname"><span class="pre">update_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_class_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_age</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_diagnostic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image"><span class="pre">Image</span></a></span></span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.update_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.update_image" title="Link to this definition"></a></dt>
+<dd><p>Modifica los metadatos de una imagen existente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Nombre de la imagen a modificar</p></li>
+<li><p><strong>new_class_id</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Nueva clase (si se proporciona)</p></li>
+<li><p><strong>new_age</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Nueva edad (si se proporciona)</p></li>
+<li><p><strong>new_diagnostic</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Nuevo diagnóstico (si se proporciona)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>La imagen modificada</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image">Image</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="modulos.html#error.not_found.ImageNotFoundError" title="error.not_found.ImageNotFoundError"><strong>ImageNotFoundError</strong></a> – Si la imagen no existe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.delete_image">
+<span class="sig-name descname"><span class="pre">delete_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.delete_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.delete_image" title="Link to this definition"></a></dt>
+<dd><p>Elimina una imagen del sistema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Nombre de la imagen a eliminar</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si se eliminó, False si no se encontró</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="modulos.html#error.not_found.ImageNotFoundError" title="error.not_found.ImageNotFoundError"><strong>ImageNotFoundError</strong></a> – Si la imagen no existe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.list_images">
+<span class="sig-name descname"><span class="pre">list_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagnostic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image"><span class="pre">Image</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.list_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.list_images" title="Link to this definition"></a></dt>
+<dd><p>Lista todas las imágenes, opcionalmente filtradas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>diagnostic</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Filtrar por diagnóstico</p></li>
+<li><p><strong>class_id</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Filtrar por clase</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lista de imágenes (filtradas si se especifica)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image">Image</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.load_from_txt">
+<span class="sig-name descname"><span class="pre">load_from_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.load_from_txt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.load_from_txt" title="Link to this definition"></a></dt>
+<dd><p>Carga imágenes desde un archivo de texto tipo large9cls.txt.</p>
+<p>El formato esperado es: nombre_imagen clase
+Por ejemplo: 1ffa9600-8d87-11e8-9daf-6045cb817f5b.jpg 7</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>txt_file</strong> (<em>str</em>) – Ruta al archivo de texto</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Número de imágenes cargadas</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FileNotFoundError</strong> – Si el archivo no existe</p></li>
+<li><p><a class="reference internal" href="modulos.html#error.base.ImageManagerError" title="error.base.ImageManagerError"><strong>ImageManagerError</strong></a> – Si hay errores en el formato</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="application.image_manager.ImageManager.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/application/image_manager.html#ImageManager.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#application.image_manager.ImageManager.__len__" title="Link to this definition"></a></dt>
+<dd><p>Obtiene el número de imágenes gestionadas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Cantidad de imágenes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="consoleui">
+<h3>ConsoleUI<a class="headerlink" href="#consoleui" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ui.console_ui.ConsoleUI">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ui.console_ui.</span></span><span class="sig-name descname"><span class="pre">ConsoleUI</span></span><a class="reference internal" href="_modules/ui/console_ui.html#ConsoleUI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ui.console_ui.ConsoleUI" title="Link to this definition"></a></dt>
+<dd><p>Interfaz de usuario en consola para el gestor de imágenes.</p>
+<p>Proporciona un menú interactivo para que el usuario pueda realizar
+operaciones sobre las imágenes médicas.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ui.console_ui.ConsoleUI.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui/console_ui.html#ConsoleUI.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ui.console_ui.ConsoleUI.__init__" title="Link to this definition"></a></dt>
+<dd><p>Inicializa la interfaz de consola.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ui.console_ui.ConsoleUI.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/ui/console_ui.html#ConsoleUI.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ui.console_ui.ConsoleUI.run" title="Link to this definition"></a></dt>
+<dd><p>Ejecuta el bucle principal de la interfaz de usuario.</p>
+<p>Muestra el menú y procesa las opciones del usuario hasta que
+decide salir.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="tkinterui">
+<h3>TkinterUI<a class="headerlink" href="#tkinterui" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="ui.tkinter_ui.TkinterUI">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ui.tkinter_ui.</span></span><span class="sig-name descname"><span class="pre">TkinterUI</span></span><a class="reference internal" href="_modules/ui/tkinter_ui.html#TkinterUI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ui.tkinter_ui.TkinterUI" title="Link to this definition"></a></dt>
+<dd><p>Interfaz gráfica de usuario con Tkinter para el gestor de imágenes.</p>
+<p>Proporciona una ventana con botones y listados para gestionar las imágenes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ui.tkinter_ui.TkinterUI.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ui/tkinter_ui.html#TkinterUI.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ui.tkinter_ui.TkinterUI.__init__" title="Link to this definition"></a></dt>
+<dd><p>Inicializa la interfaz gráfica.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ui.tkinter_ui.TkinterUI.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/ui/tkinter_ui.html#TkinterUI.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ui.tkinter_ui.TkinterUI.run" title="Link to this definition"></a></dt>
+<dd><p>Inicia el bucle principal de la interfaz gráfica.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="csvrepository">
+<h3>CsvRepository<a class="headerlink" href="#csvrepository" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="infrastructure.csv_repository.CsvRepository">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">infrastructure.csv_repository.</span></span><span class="sig-name descname"><span class="pre">CsvRepository</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'storage/image_data.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/infrastructure/csv_repository.html#CsvRepository"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#infrastructure.csv_repository.CsvRepository" title="Link to this definition"></a></dt>
+<dd><p>Guarda imágenes en formato CSV.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="infrastructure.csv_repository.CsvRepository.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'storage/image_data.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/infrastructure/csv_repository.html#CsvRepository.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#infrastructure.csv_repository.CsvRepository.__init__" title="Link to this definition"></a></dt>
+<dd><p>Inicializa el repositorio CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Ruta del archivo CSV (por defecto en storage/)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="infrastructure.csv_repository.CsvRepository.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image"><span class="pre">Image</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/infrastructure/csv_repository.html#CsvRepository.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#infrastructure.csv_repository.CsvRepository.save" title="Link to this definition"></a></dt>
+<dd><p>Guarda las imágenes en CSV.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="infrastructure.csv_repository.CsvRepository.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="modulos.html#domain.image.Image" title="domain.image.Image"><span class="pre">Image</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/infrastructure/csv_repository.html#CsvRepository.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#infrastructure.csv_repository.CsvRepository.load" title="Link to this definition"></a></dt>
+<dd><p>Carga las imágenes desde CSV.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="excepciones">
+<h2>Excepciones<a class="headerlink" href="#excepciones" title="Link to this heading"></a></h2>
+<section id="imagemanagererror">
+<h3>ImageManagerError<a class="headerlink" href="#imagemanagererror" title="Link to this heading"></a></h3>
+<dl class="py exception">
+<dt class="sig sig-object py" id="error.base.ImageManagerError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">error.base.</span></span><span class="sig-name descname"><span class="pre">ImageManagerError</span></span><a class="reference internal" href="_modules/error/base.html#ImageManagerError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#error.base.ImageManagerError" title="Link to this definition"></a></dt>
+<dd><p>Excepción base para errores del gestor de imágenes.</p>
+</dd></dl>
+
+</section>
+<section id="duplicateimageerror">
+<h3>DuplicateImageError<a class="headerlink" href="#duplicateimageerror" title="Link to this heading"></a></h3>
+<dl class="py exception">
+<dt class="sig sig-object py" id="error.duplicate.DuplicateImageError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">error.duplicate.</span></span><span class="sig-name descname"><span class="pre">DuplicateImageError</span></span><a class="reference internal" href="_modules/error/duplicate.html#DuplicateImageError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#error.duplicate.DuplicateImageError" title="Link to this definition"></a></dt>
+<dd><p>Excepción lanzada cuando se intenta agregar una imagen duplicada.</p>
+</dd></dl>
+
+</section>
+<section id="imagenotfounderror">
+<h3>ImageNotFoundError<a class="headerlink" href="#imagenotfounderror" title="Link to this heading"></a></h3>
+<dl class="py exception">
+<dt class="sig sig-object py" id="error.not_found.ImageNotFoundError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">error.not_found.</span></span><span class="sig-name descname"><span class="pre">ImageNotFoundError</span></span><a class="reference internal" href="_modules/error/not_found.html#ImageNotFoundError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#error.not_found.ImageNotFoundError" title="Link to this definition"></a></dt>
+<dd><p>Excepción lanzada cuando no se encuentra una imagen.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="constantes">
+<h2>Constantes<a class="headerlink" href="#constantes" title="Link to this heading"></a></h2>
+<section id="diagnostics">
+<h3>DIAGNOSTICS<a class="headerlink" href="#diagnostics" title="Link to this heading"></a></h3>
+<dl class="py data">
+<dt class="sig sig-object py" id="domain.image.DIAGNOSTICS">
+<span class="sig-prename descclassname"><span class="pre">domain.image.</span></span><span class="sig-name descname"><span class="pre">DIAGNOSTICS</span></span><a class="headerlink" href="#domain.image.DIAGNOSTICS" title="Link to this definition"></a></dt>
+<dd><p>Diccionario que mapea los IDs de clase a información de diagnóstico.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DIAGNOSTICS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;Normal&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Normal&quot;</span><span class="p">},</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;dAMD&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Degeneración macular asociada a la edad (seca)&quot;</span><span class="p">},</span>
+    <span class="c1"># ... más diagnósticos</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modulos.html" class="btn btn-neutral float-left" title="Documentación de Módulos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Equipo de Desarrollo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

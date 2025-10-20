@@ -1,0 +1,80 @@
+Guía de Uso
+===========
+
+Inicio del Sistema
+------------------
+
+Al ejecutar ``py main.py``, el sistema te permite elegir entre dos interfaces:
+
+1. **Consola (Terminal)**: Interfaz de texto
+2. **Gráfico (Tkinter)**: Interfaz gráfica
+
+Funcionalidades Principales
+---------------------------
+
+Registrar Nueva Imagen
+~~~~~~~~~~~~~~~~~~~~~~
+
+Permite agregar una nueva imagen al sistema con sus metadatos:
+
+* Nombre de la imagen
+* Clase (0-7) según el diagnóstico
+* Edad del paciente
+
+Buscar Imagen
+~~~~~~~~~~~~~
+
+Busca una imagen específica por su nombre y muestra toda su información.
+
+Modificar Imagen
+~~~~~~~~~~~~~~~~
+
+Permite actualizar los metadatos de una imagen existente:
+
+* Cambiar la clase/diagnóstico
+* Actualizar la edad del paciente
+
+Eliminar Imagen
+~~~~~~~~~~~~~~~
+
+Elimina una imagen del sistema (con confirmación).
+
+Listar Imágenes
+~~~~~~~~~~~~~~~
+
+Muestra todas las imágenes registradas o permite filtrar por diagnóstico.
+
+Cargar desde TXT
+~~~~~~~~~~~~~~~~
+
+Carga múltiples imágenes desde un archivo de texto en formato:
+``nombre_imagen clase``
+
+Ejemplo de Archivo TXT
+----------------------
+
+.. code-block:: text
+
+   1ffa9600-8d87-11e8-9daf-6045cb817f5b.jpg 7
+   1ffa9601-8d87-11e8-9daf-6045cb817f5b.jpg 0
+   1ffa9602-8d87-11e8-9daf-6045cb817f5b.jpg 3
+
+Interfaz Gráfica
+----------------
+
+La interfaz gráfica (Tkinter) proporciona:
+
+* Lista visual de todas las imágenes
+* Botones para cada operación
+* Diálogos para entrada de datos
+* Selección visual de imágenes para modificar/eliminar
+
+Interfaz de Consola
+-------------------
+
+La interfaz de consola ofrece:
+
+* Menú interactivo numerado
+* Validación de entrada
+* Mensajes informativos
+* Operaciones paso a paso

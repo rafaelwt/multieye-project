@@ -1,0 +1,53 @@
+@startuml
+!theme plain
+
+title Gestión de Imágenes Médicas - MultiEYE
+
+class Image {
+    - name: str
+    - class_id: int
+    - age: int
+    - diagnostic: str
+    --
+    + __init__(name, class_id, age)
+    + to_dict()
+    + __str__()
+}
+
+class ImageManager {
+    - _images: List[Image]
+    --
+    + add_image()
+    + find_image()
+    + update_image()
+    + delete_image()
+    + list_images()
+    + load_from_txt()
+}
+
+class ConsoleUI {
+    - _manager: ImageManager
+    --
+    + run()
+    + _register_image()
+    + _search_image()
+    + _update_image()
+    + _delete_image()
+}
+
+class TkinterUI {
+    - _manager: ImageManager
+    --
+    + run()
+    + _register_image()
+    + _search_image()
+    + _update_image()
+    + _delete_image()
+}
+
+' Relaciones principales
+ImageManager --> Image : gestiona
+ConsoleUI --> ImageManager : usa
+TkinterUI --> ImageManager : usa
+
+@enduml
