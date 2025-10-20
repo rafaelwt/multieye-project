@@ -5,8 +5,10 @@ Define la clase TkinterUI que proporciona una interfaz gráfica de usuario.
 """
 
 import tkinter as tk
-from tkinter import ttk, messagebox, simpledialog
+from tkinter import ttk, messagebox, simpledialog, filedialog
+from typing import Optional
 from application.image_manager import ImageManager
+from domain.image import Image
 from error import (
     ImageNotFoundError,
     DuplicateImageError,
@@ -28,8 +30,9 @@ class TkinterUI:
         """Inicializa la interfaz gráfica."""
         self._manager = ImageManager()
         self._root = tk.Tk()
-        self._root.title("Sistema de Gestión de Imágenes Médicas")
-        self._root.geometry("800x600")
+        self._root.title("Sistema de Gestión de Imágenes Médicas (MultiEYE)")
+        self._root.geometry("900x600")
+        self._center_window(self._root)
         self._setup_interface()
 
     def run(self) -> None:
@@ -38,12 +41,47 @@ class TkinterUI:
         """
         self._root.mainloop()
 
+    def _center_window(self, window) -> None:
+        """
+        Centra una ventana en la pantalla.
+
+        Args:
+            window: Ventana de Tkinter a centrar
+        """
+        window.update_idletasks()
+        width = window.winfo_width()
+        height = window.winfo_height()
+        x = (window.winfo_screenwidth() // 2) - (width // 2)
+        y = (window.winfo_screenheight() // 2) - (height // 2)
+        window.geometry(f"{width}x{height}+{x}+{y}")
+
+    def _get_selected_image(self) -> Optional[Image]:
+        """
+        Obtiene la imagen seleccionada en la tabla.
+
+        Returns:
+            Optional[Image]: Imagen seleccionada o None si no hay selección
+        """
+        selection = self._tree.selection()
+        if not selection:
+            return None
+
+        # Obtener el índice del item seleccionado
+        item = self._tree.item(selection[0])
+        values = item['values']
+        if not values:
+            return None
+
+        # El primer valor es el nombre de la imagen
+        image_name = values[0]
+        return self._manager.find_image(image_name)
+
     def _setup_interface(self) -> None:
         """Configura todos los elementos de la interfaz."""
         # Título
         title = tk.Label(
             self._root,
-            text="Sistema de Gestión de Imágenes Médicas",
+            text="Sistema de Gestión de Imágenes Médicas (MultiEYE)",
             font=("Arial", 16, "bold"),
             bg="#2196F3",
             fg="white",
@@ -103,9 +141,12 @@ class TkinterUI:
         # Configurar columnas
         self._tree.column("#0", width=50)
         self._tree.heading("#0", text="#")
+        self._tree.column("Nombre", width=200)
+        self._tree.column("Clase", width=80)
+        self._tree.column("Diagnóstico", width=300)
+        self._tree.column("Edad", width=80)
 
         for col in columns:
-            self._tree.column(col, width=150)
             self._tree.heading(col, text=col)
 
         # Scrollbar
@@ -138,7 +179,7 @@ class TkinterUI:
                 values=(
                     image.name,
                     image.class_id,
-                    image.diagnostic,
+                    f"{image.diagnostic} - {image.diagnostic_full}",
                     image.age
                 )
             )
@@ -151,24 +192,40 @@ class TkinterUI:
         dialog.geometry("400x250")
         dialog.transient(self._root)
         dialog.grab_set()
+        self._center_window(dialog)
 
         # Campos
         ttk.Label(dialog, text="Nombre de la imagen:").pack(pady=5)
-        entry_name = ttk.Entry(dialog, width=40)
+        entry_name = ttk.Entry(dialog, width=50)
         entry_name.pack(pady=5)
 
-        ttk.Label(dialog, text="Clase (0-7):").pack(pady=5)
-        entry_class = ttk.Entry(dialog, width=40)
-        entry_class.pack(pady=5)
+        ttk.Label(dialog, text="Diagnóstico:").pack(pady=5)
+        class_combo = ttk.Combobox(
+            dialog,
+            width=50,
+            state="readonly",
+            values=[f"{k}: {v['abbr']} - {v['name']}" for k, v in DIAGNOSTICS.items()]
+        )
+        class_combo.pack(pady=5)
 
         ttk.Label(dialog, text="Edad del paciente:").pack(pady=5)
-        entry_age = ttk.Entry(dialog, width=40)
+        entry_age = ttk.Entry(dialog, width=50)
         entry_age.pack(pady=5)
 
         def save():
             try:
                 name = entry_name.get().strip()
-                class_id = int(entry_class.get())
+                if not name:
+                    messagebox.showerror("Error", "El nombre no puede estar vacío")
+                    return
+
+                class_selection = class_combo.get()
+                if not class_selection:
+                    messagebox.showerror("Error", "Debe seleccionar un diagnóstico")
+                    return
+
+                # Extraer el class_id del formato "0: Normal - Normal"
+                class_id = int(class_selection.split(":")[0])
                 age = int(entry_age.get())
 
                 self._manager.add_image(name, class_id, age)
@@ -182,7 +239,7 @@ class TkinterUI:
             except ValueError:
                 messagebox.showerror(
                     "Error",
-                    "Clase y edad deben ser números enteros"
+                    "La edad debe ser un número entero"
                 )
             except DuplicateImageError as e:
                 messagebox.showerror("Error", str(e))
@@ -217,7 +274,7 @@ class TkinterUI:
                     "Imagen Encontrada",
                     f"Nombre: {image.name}\n"
                     f"Clase: {image.class_id}\n"
-                    f"Diagnóstico: {image.diagnostic}\n"
+                    f"Diagnóstico: {image.diagnostic} - {image.diagnostic_full}\n"
                     f"Edad: {image.age} años"
                 )
             else:
@@ -228,19 +285,12 @@ class TkinterUI:
 
     def _update_image(self) -> None:
         """Modifica una imagen existente."""
-        name = simpledialog.askstring(
-            "Modificar Imagen",
-            "Ingrese el nombre de la imagen a modificar:"
-        )
+        image = self._get_selected_image()
 
-        if not name:
-            return
-
-        image = self._manager.find_image(name)
         if not image:
             messagebox.showwarning(
-                "No Encontrada",
-                f"No se encontró ninguna imagen con el nombre: {name}"
+                "Selección Requerida",
+                "Debe seleccionar una imagen de la tabla para modificar."
             )
             return
 
@@ -250,19 +300,25 @@ class TkinterUI:
         dialog.geometry("400x250")
         dialog.transient(self._root)
         dialog.grab_set()
+        self._center_window(dialog)
 
         ttk.Label(
             dialog,
-            text=f"Modificando: {name}",
+            text=f"Imagen: {image.name}",
             font=("Arial", 12, "bold")
         ).pack(pady=10)
 
-        ttk.Label(dialog, text=f"Nueva clase (actual: {image.class_id}):").pack(pady=5)
-        entry_class = ttk.Entry(dialog, width=40)
-        entry_class.pack(pady=5)
+        ttk.Label(dialog, text=f"Nueva clase (actual: {image.class_id} - {image.diagnostic}):").pack(pady=5)
+        class_combo = ttk.Combobox(
+            dialog,
+            width=50,
+            state="readonly",
+            values=[f"{k}: {v['abbr']} - {v['name']}" for k, v in DIAGNOSTICS.items()]
+        )
+        class_combo.pack(pady=5)
 
         ttk.Label(dialog, text=f"Nueva edad (actual: {image.age}):").pack(pady=5)
-        entry_age = ttk.Entry(dialog, width=40)
+        entry_age = ttk.Entry(dialog, width=50)
         entry_age.pack(pady=5)
 
         def save():
@@ -270,20 +326,22 @@ class TkinterUI:
                 new_class_id = None
                 new_age = None
 
-                if entry_class.get().strip():
-                    new_class_id = int(entry_class.get())
+                class_selection = class_combo.get()
+                if class_selection:
+                    # Extraer el class_id del formato "0: Normal"
+                    new_class_id = int(class_selection.split(":")[0])
 
                 if entry_age.get().strip():
                     new_age = int(entry_age.get())
 
                 self._manager.update_image(
-                    name,
+                    image.name,
                     new_class_id=new_class_id,
                     new_age=new_age
                 )
                 messagebox.showinfo(
                     "Éxito",
-                    f"Imagen '{name}' modificada exitosamente"
+                    f"Imagen '{image.name}' modificada exitosamente"
                 )
                 dialog.destroy()
                 self._refresh_list()
@@ -291,7 +349,7 @@ class TkinterUI:
             except ValueError:
                 messagebox.showerror(
                     "Error",
-                    "Los valores deben ser números enteros"
+                    "La edad debe ser un número entero"
                 )
             except ImageNotFoundError as e:
                 messagebox.showerror("Error", str(e))
@@ -313,36 +371,29 @@ class TkinterUI:
 
     def _delete_image(self) -> None:
         """Elimina una imagen del sistema."""
-        name = simpledialog.askstring(
-            "Eliminar Imagen",
-            "Ingrese el nombre de la imagen a eliminar:"
-        )
+        image = self._get_selected_image()
 
-        if not name:
-            return
-
-        image = self._manager.find_image(name)
         if not image:
             messagebox.showwarning(
-                "No Encontrada",
-                f"No se encontró ninguna imagen con el nombre: {name}"
+                "Selección Requerida",
+                "Debe seleccionar una imagen de la tabla para eliminar."
             )
             return
 
         confirm = messagebox.askyesno(
             "Confirmar Eliminación",
-            f"¿Está seguro que desea eliminar la imagen '{name}'?\n\n"
+            f"¿Está seguro que desea eliminar la imagen '{image.name}'?\n\n"
             f"Clase: {image.class_id}\n"
-            f"Diagnóstico: {image.diagnostic}\n"
+            f"Diagnóstico: {image.diagnostic} - {image.diagnostic_full}\n"
             f"Edad: {image.age} años"
         )
 
         if confirm:
             try:
-                self._manager.delete_image(name)
+                self._manager.delete_image(image.name)
                 messagebox.showinfo(
                     "Éxito",
-                    f"Imagen '{name}' eliminada exitosamente"
+                    f"Imagen '{image.name}' eliminada exitosamente"
                 )
                 self._refresh_list()
             except ImageNotFoundError as e:
@@ -350,8 +401,6 @@ class TkinterUI:
 
     def _load_from_txt(self) -> None:
         """Carga imágenes desde un archivo TXT."""
-        from tkinter import filedialog
-
         file_path = filedialog.askopenfilename(
             title="Seleccionar archivo",
             filetypes=[("Archivos de texto", "*.txt"), ("Todos los archivos", "*.*")]

@@ -127,6 +127,7 @@ class ConsoleUI:
                 print("El nombre no puede estar vacío")
                 return
 
+            self._show_diagnostics_info()
             class_id = self._read_integer(
                 "Clase (0-7): ",
                 minimum=0,
@@ -188,6 +189,8 @@ class ConsoleUI:
         self._show_image(image)
 
         print("\nIngrese los nuevos valores (presione Enter para mantener el actual):")
+
+        self._show_diagnostics_info()
 
         new_class_id = self._read_optional_integer(
             f"Nueva clase (actual: {image.class_id}): ",
@@ -256,7 +259,7 @@ class ConsoleUI:
         print(f"\nTotal de imágenes: {len(images)}\n")
         for i, image in enumerate(images, 1):
             print(f"{i}. {image.name}")
-            print(f"   Clase: {image.class_id} | Diagnóstico: {image.diagnostic} | Edad: {image.age}")
+            print(f"   Clase: {image.class_id} | Diagnóstico: {image.diagnostic} - {image.diagnostic_full} | Edad: {image.age}")
             print()
 
     def _list_by_diagnostic(self) -> None:
@@ -266,8 +269,8 @@ class ConsoleUI:
         print("=" * 60)
 
         print("\nDiagnósticos disponibles:")
-        for i, diagnostic in enumerate(VALID_DIAGNOSTICS, 1):
-            print(f"{i}. {diagnostic}")
+        for i, diagnostic_info in enumerate(VALID_DIAGNOSTICS, 1):
+            print(f"{i}. {diagnostic_info['abbr']} - {diagnostic_info['name']}")
 
         option = self._read_integer(
             f"\nSeleccione diagnóstico (1-{len(VALID_DIAGNOSTICS)}): ",
@@ -277,11 +280,13 @@ class ConsoleUI:
         if option is None:
             return
 
-        diagnostic = VALID_DIAGNOSTICS[option - 1]
+        diagnostic_info = VALID_DIAGNOSTICS[option - 1]
+        diagnostic = diagnostic_info['abbr']
         images = self._manager.list_images(diagnostic=diagnostic)
 
         if not images:
-            print(f"\nNo hay imágenes con diagnóstico: {diagnostic}")
+            print(f"\nNo hay imágenes registradas con diagnóstico: {diagnostic}")
+            print("Puede registrar nuevas imágenes o seleccionar otro diagnóstico.")
             return
 
         print(f"\nImágenes con diagnóstico '{diagnostic}': {len(images)}\n")
@@ -407,3 +412,11 @@ class ConsoleUI:
         except ValueError:
             print("Debe ingresar un número entero válido")
             return None
+
+    def _show_diagnostics_info(self) -> None:
+        """Muestra la información de los diagnósticos disponibles."""
+        print("\nDiagnósticos disponibles:")
+        print("-" * 80)
+        for class_id, diagnostic_info in DIAGNOSTICS.items():
+            print(f"{class_id}: {diagnostic_info['abbr']} - {diagnostic_info['name']}")
+        print("-" * 80)
