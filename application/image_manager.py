@@ -114,7 +114,9 @@ class ImageManager:
 
         if new_class_id is not None:
             image.class_id = new_class_id
-            image.diagnostic = DIAGNOSTICS.get(new_class_id, "Desconocido")
+            diagnostic_info = DIAGNOSTICS.get(new_class_id, {"abbr": "Desconocido", "name": "Desconocido"})
+            image.diagnostic = diagnostic_info["abbr"]
+            image.diagnostic_full = diagnostic_info["name"]
 
         if new_age is not None:
             image.age = new_age
